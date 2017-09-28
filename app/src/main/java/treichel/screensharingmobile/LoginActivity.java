@@ -1,6 +1,7 @@
 package treichel.screensharingmobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,7 +43,9 @@ public class LoginActivity extends AppCompatActivity
                 goodCred = true;
                 credentials.putString("username", username);
                 credentials.putString("password", password);
-                break;
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtras(credentials);
+                startActivity(intent);
             }
         }
         if(goodCred == false){
