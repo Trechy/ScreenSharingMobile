@@ -7,21 +7,20 @@
     tools:context="treichel.screensharingmobile.AddContactActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/contactNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/addContactButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/contactNameText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
         android:text="Add" />
