@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="treichel.screensharingmobile.MainActivity">
+
+    <Button
+        android:id="@+id/addContactPageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Add Contact"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight=".80"/>
+
+    <EditText
+        android:id="@+id/numberText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_below="@+id/addContactPageButton"
+        android:layout_alignRight="@+id/addContactPageButton"
+        android:layout_alignEnd="@+id/addContactPageButton"
+        android:layout_marginRight="31dp"
+        android:layout_marginEnd="31dp" />
+
+    <EditText
+        android:id="@+id/numberText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/numberText1"
+        android:layout_alignRight="@+id/numberText1"
+        android:layout_below="@+id/numberText1"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/numberOutputText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="Which number is bigger?" />
+
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check"
+        android:layout_above="@+id/numberOutputText"
+        android:layout_toRightOf="@+id/addContactPageButton"
+        android:layout_toEndOf="@+id/addContactPageButton"
+        android:layout_marginBottom="21dp" />
+
+</RelativeLayout>

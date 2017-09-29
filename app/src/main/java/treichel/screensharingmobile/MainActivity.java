@@ -60,14 +60,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick (View v){
         switch(v.getId()){
-            case R.id.addContactButton:
+            case R.id.addContactPageButton:
                 Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
                 startActivity(intent);
                 break;
             case R.id.checkButton:
-                int number1 = Integer.parseInt(numberText1.getText().toString());
-                int number2 = Integer.parseInt(numberText2.getText().toString());
-                numberOutputText.setText(sizeCheck(number1, number2));
+                if(numberText1.getText().length() != 0 && numberText2.getText().length() != 0) {
+                    int number1 = Integer.parseInt(numberText1.getText().toString());
+                    int number2 = Integer.parseInt(numberText2.getText().toString());
+                    if (number1 != 0 && number2 != 0) {
+                        numberOutputText.setText(sizeCheck(number1, number2));
+                    }
+                }
+                else
+                {
+                    numberOutputText.setText("Please enter some numbers");
+                }
                 break;
         }
     }
