@@ -36,4 +36,13 @@
         android:layout_marginTop="53dp"
         android:text="Login" />
 
+    <TextView
+        android:id="@+id/signUpView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="Don't have an account?  Sign Up!" />
+
 </RelativeLayout>
