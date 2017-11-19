@@ -10,9 +10,10 @@
         android:id="@+id/usernameSignUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
+        android:layout_alignLeft="@+id/usernameSignUpView"
+        android:layout_alignStart="@+id/usernameSignUpView"
+        android:layout_below="@+id/usernameSignUpView"
+        android:layout_marginTop="19dp"
         android:ems="10"
         android:inputType="textPersonName" />
 
@@ -20,10 +21,10 @@
         android:id="@+id/passwordSignUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/usernameSignUpText"
-        android:layout_alignRight="@+id/usernameSignUpText"
-        android:layout_below="@+id/usernameSignUpText"
-        android:layout_marginTop="45dp"
+        android:layout_alignBaseline="@+id/usernameSignUpText"
+        android:layout_alignBottom="@+id/usernameSignUpText"
+        android:layout_alignLeft="@+id/passwordSignUpView"
+        android:layout_alignStart="@+id/passwordSignUpView"
         android:ems="10"
         android:inputType="textPassword" />
 
@@ -42,20 +43,22 @@
         android:id="@+id/usernameSignUpView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/usernameSignUpText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/usernameSignUpText"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="21dp"
         android:text="Username:" />
 
     <TextView
         android:id="@+id/passwordSignUpView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/passwordSignUpText"
-        android:layout_alignStart="@+id/passwordSignUpText"
-        android:layout_below="@+id/usernameSignUpText"
-        android:layout_marginTop="18dp"
+        android:layout_alignBaseline="@+id/usernameSignUpView"
+        android:layout_alignBottom="@+id/usernameSignUpView"
+        android:layout_toEndOf="@+id/signUpButton"
+        android:layout_toRightOf="@+id/signUpButton"
         android:text="Password:" />
 
     <TextView
