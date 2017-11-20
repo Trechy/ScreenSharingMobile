@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity
     private Button loginButton;
     private String[] usernames = {"BTreichel", "User2"};
     private String[] passwords = {"goodPass", "testPass"};
+    private TextView signUpLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,14 @@ public class LoginActivity extends AppCompatActivity
         loginButton = (Button)
                 findViewById(R.id.loginButton);
         loginButton.setOnClickListener(this);
+        signUpLink = (TextView)
+                findViewById(R.id.signUpView);
+        signUpLink.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
