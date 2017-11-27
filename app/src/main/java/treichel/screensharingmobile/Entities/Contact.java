@@ -3,6 +3,7 @@ package treichel.screensharingmobile.Entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by Brian on 27/11/2017.
@@ -23,10 +24,12 @@ import android.arch.persistence.room.Index;
                 onDelete = ForeignKey.CASCADE
         )
     },
-    indices = {@Index(value = "id")}
+    indices = {@Index(value = "userId")}
 )
 
 public class Contact {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     public int userId;
     public int contactId;
 

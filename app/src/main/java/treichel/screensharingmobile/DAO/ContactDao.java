@@ -22,5 +22,5 @@ public interface ContactDao {
     public List<Contact> getAllContact(int id);
 
     @Query("select * from contact where userId =:id and contactId = :friendId")
-    public List<Contact> getContact(int id, int friendId);
+    public Contact getContact(int id, int friendId);
 }

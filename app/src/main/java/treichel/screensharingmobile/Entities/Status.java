@@ -13,8 +13,7 @@ public class Status {
     public int id;
     public String type;
 
-    public Status(int id, String type){
-        this.id = id;
+    public Status(String type){
         this.type = type;
     }
 }
