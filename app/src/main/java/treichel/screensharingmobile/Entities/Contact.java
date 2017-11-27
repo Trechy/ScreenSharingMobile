@@ -7,6 +7,7 @@ import android.arch.persistence.room.Index;
 /**
  * Created by Brian on 27/11/2017.
  */
+
 @Entity(tableName = "contact",
     foreignKeys = {
         @ForeignKey(
@@ -23,7 +24,8 @@ import android.arch.persistence.room.Index;
         )
     },
     indices = {@Index(value = "id")}
-    )
+)
+
 public class Contact {
     public int userId;
     public int contactId;

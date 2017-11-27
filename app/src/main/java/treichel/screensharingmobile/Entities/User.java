@@ -16,9 +16,11 @@ import android.arch.persistence.room.PrimaryKey;
                         parentColumns = "id",
                         childColumns = "status",
                         onDelete = ForeignKey.CASCADE
-                )},
+                )
+        },
         indices = {@Index(value = "id")}
 )
+
 public class User {
     @PrimaryKey(autoGenerate = true)
     public final int id;
