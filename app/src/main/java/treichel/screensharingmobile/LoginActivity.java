@@ -83,6 +83,10 @@ public class LoginActivity extends AppCompatActivity
                 goodCred = true;
                 credentials.putString("username", username);
                 credentials.putString("password", password);
+                /*Something is wrong with this object declaration
+                //ActiveUser currentUser = ((ActiveUser)getApplicationContext());
+                //currentUser.setActiveUserId(user.id);
+                */
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtras(credentials);
                 startActivity(intent);

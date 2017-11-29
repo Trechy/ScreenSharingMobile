@@ -10,8 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import treichel.screensharingmobile.Database.AppDatabase;
+import treichel.screensharingmobile.Entities.Contact;
+import treichel.screensharingmobile.Entities.User;
+
 public class AddContactActivity extends AppCompatActivity
     implements View.OnClickListener {
+
+    private AppDatabase database;
 
     private EditText contactNameText;
     private Button addContactButton;
@@ -21,6 +27,8 @@ public class AddContactActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
 
+        database = AppDatabase.getDatabase(getApplicationContext());
+
         contactNameText = (EditText)
                 findViewById(R.id.contactNameText);
         addContactButton = (Button)
@@ -29,13 +37,34 @@ public class AddContactActivity extends AppCompatActivity
     }
 
     public void onClick (View v){
+        ActiveUser currentUser = ((ActiveUser)getApplicationContext());
         String contactName = contactNameText.getText().toString();
         Context context = getApplicationContext();
-        CharSequence text = contactName + " added";
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        contactNameText.setText("");
-        toast.show();
+        CharSequence text;
+        User contactUser = database.userDao().getUser(contactName);
+        if(contactUser == null){
+            text = "User does not exist";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            contactNameText.setText("");
+            toast.show();
+        }
+        else if(database.contactDao().getContact(currentUser.getActiveUserId(), contactUser.id) != null){
+            text = contactName + " is already a contact";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            contactNameText.setText("");
+            toast.show();
+        }
+        else{
+            Contact contact = new Contact(currentUser.getActiveUserId(), contactUser.id);
+            database.contactDao().addContact(contact);
+            text = contactName + " added";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            contactNameText.setText("");
+            toast.show();
+        }
     }
 }
