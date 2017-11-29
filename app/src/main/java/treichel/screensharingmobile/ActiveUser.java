@@ -6,7 +6,7 @@ import android.app.Application;
  * Created by Brian on 29/11/2017.
  */
 
-public class ActiveUser extends Application {
+class ActiveUser extends Application {
     private int id;
     private String username;
 

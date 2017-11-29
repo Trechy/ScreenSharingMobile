@@ -23,4 +23,6 @@ public interface ContactDao {
 
     @Query("select * from contact where userId =:id and contactId = :friendId")
     public Contact getContact(int id, int friendId);
+
+    //Select Contact name using a join between user and contact table off of the contact id
 }
