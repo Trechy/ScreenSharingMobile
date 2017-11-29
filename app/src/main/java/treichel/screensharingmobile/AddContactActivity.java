@@ -1,6 +1,7 @@
 package treichel.screensharingmobile;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -37,9 +38,10 @@ public class AddContactActivity extends AppCompatActivity
     }
 
     public void onClick (View v){
-        ActiveUser currentUser = ((ActiveUser)getApplicationContext());
         String contactName = contactNameText.getText().toString();
         Context context = getApplicationContext();
+        SharedPreferences activeUser = context
+                .getSharedPreferences("ACTIVE_USER", Context.MODE_PRIVATE);
         int duration = Toast.LENGTH_SHORT;
         CharSequence text;
         User contactUser = database.userDao().getUser(contactName);
@@ -50,7 +52,7 @@ public class AddContactActivity extends AppCompatActivity
             contactNameText.setText("");
             toast.show();
         }
-        else if(database.contactDao().getContact(currentUser.getActiveUserId(), contactUser.id) != null){
+        else if(database.contactDao().getContact(activeUser.getInt("UserID", 0), contactUser.id) != null){
             text = contactName + " is already a contact";
             Toast toast = Toast.makeText(context, text, duration);
             toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
@@ -58,7 +60,7 @@ public class AddContactActivity extends AppCompatActivity
             toast.show();
         }
         else{
-            Contact contact = new Contact(currentUser.getActiveUserId(), contactUser.id);
+            Contact contact = new Contact(activeUser.getInt("UserID", 0), contactUser.id);
             database.contactDao().addContact(contact);
             text = contactName + " added";
             Toast toast = Toast.makeText(context, text, duration);

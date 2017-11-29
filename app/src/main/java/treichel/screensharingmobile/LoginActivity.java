@@ -2,6 +2,7 @@ package treichel.screensharingmobile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity
         String username = usernameText.getText().toString();
         String password = passwordText.getText().toString();
         Context context = getApplicationContext();
+        SharedPreferences activeUser = context.getSharedPreferences("ACTIVE_USER", Context.MODE_PRIVATE);
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
         User user = database.userDao().getUser(username);
@@ -77,19 +79,14 @@ public class LoginActivity extends AppCompatActivity
             toast.show();
         }
         else {
-            Bundle credentials = new Bundle();
             boolean goodCred = false;
             if ((user.username.equals(username)) && (user.password.equals(password))) {
                 goodCred = true;
-                credentials.putString("username", username);
-                credentials.putString("password", password);
-                /*Something is wrong with this object declaration
-                ActiveUser currentUser = ((ActiveUser)getApplicationContext());
-                currentUser.setActiveUserId(user.id);
-                currentUser.setActiverUsername(user.username);
-                */
+                SharedPreferences.Editor putCreds = activeUser.edit();
+                putCreds.putInt("UserID", user.id);
+                putCreds.putString("Username", user.username);
+                putCreds.commit();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtras(credentials);
                 startActivity(intent);
             }
             if(goodCred == false) {
