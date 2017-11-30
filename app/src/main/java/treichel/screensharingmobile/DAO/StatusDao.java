@@ -18,6 +18,9 @@ public interface StatusDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     void addStatus(Status status);
 
+    @Query("select type from status where id = :incomingId")
+    public String getStatusType(int incomingId);
+
     @Query("select * from status")
     public List<Status> getAllStatus();
 

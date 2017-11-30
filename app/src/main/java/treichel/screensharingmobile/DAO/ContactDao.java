@@ -8,6 +8,7 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 import treichel.screensharingmobile.Entities.Contact;
+import treichel.screensharingmobile.Entities.User;
 
 /**
  * Created by Brian on 27/11/2017.
@@ -25,4 +26,8 @@ public interface ContactDao {
     public Contact getContact(int id, int friendId);
 
     //Select Contact name using a join between user and contact table off of the contact id
+    @Query("select contact.id, user.username, user.Status " +
+            "from contact " +
+            "join user on contact.contactId = user.id where contact.userId = :incomingId")
+    public List<User> getUserContacts(int incomingId);
 }

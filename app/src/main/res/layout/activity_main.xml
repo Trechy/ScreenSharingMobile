@@ -8,51 +8,22 @@
 
     <Button
         android:id="@+id/addContactPageButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:text="Add Contact"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_weight=".80"/>
+        android:layout_marginTop="29dp"
+        android:paddingHorizontal="16dp"
+        android:layout_weight=".80"
+        android:text="Add Contact" />
 
-    <EditText
-        android:id="@+id/numberText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/contactListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/addContactPageButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:ems="10"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/numberText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/numberText1"
-        android:layout_alignRight="@+id/numberText1"
-        android:layout_below="@+id/numberText1"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/numberOutputText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="Which number is bigger?" />
-
-    <Button
-        android:id="@+id/checkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberOutputText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="Check" />
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="16dp"/>
 
 </RelativeLayout>

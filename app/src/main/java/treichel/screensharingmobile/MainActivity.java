@@ -9,23 +9,35 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import treichel.screensharingmobile.Database.AppDatabase;
+import treichel.screensharingmobile.Entities.Contact;
+import treichel.screensharingmobile.Entities.User;
+
 public class MainActivity extends AppCompatActivity
     implements OnClickListener {
 
+    private AppDatabase database;
+
     private Button addContactPageButton;
-    private EditText numberText1;
-    private EditText numberText2;
-    private TextView numberOutputText;
-    private Button checkButton;
+    private ListView contactListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database = AppDatabase.getDatabase(getApplicationContext());
 
         SharedPreferences activeUser = getApplication()
                 .getSharedPreferences("ACTIVE_USER", Context.MODE_PRIVATE);
@@ -42,24 +54,28 @@ public class MainActivity extends AppCompatActivity
                 findViewById(R.id.addContactPageButton);
         addContactPageButton.setOnClickListener(this);
 
-        numberText1 = (EditText)
-                findViewById(R.id.numberText1);
-        numberText2 = (EditText)
-                findViewById(R.id.numberText2);
-        numberOutputText = (TextView)
-                findViewById(R.id.numberOutputText);
-        checkButton = (Button)
-                findViewById(R.id.checkButton);
-        checkButton.setOnClickListener(this);
+        contactListView = (ListView)
+                findViewById(R.id.contactListView);
+
+        SimpleAdapter contactAdaptor = new SimpleAdapter(this, MapContacts(activeUser),
+                android.R.layout.two_line_list_item, new String[] {"username", "status"},
+                new int[] {android.R.id.text1, android.R.id.text2});
+
+        contactListView.setAdapter(contactAdaptor);
+
     }
 
-    public String sizeCheck(int number1, int number2){
-        if(number1 > number2){
-            return numberText1.getText() + " is bigger than " + numberText2.getText();
+    private List<Map<String, String>> MapContacts(SharedPreferences activeUser){
+        List<Map<String, String>> displayContacts = new ArrayList<Map<String, String>>();
+        List<User> userContacts = database.contactDao().getUserContacts(activeUser.getInt("UserID", 0));
+
+        for(User c:userContacts){
+            HashMap<String, String> cMap = new HashMap<String, String>();
+            cMap.put("username", c.username);
+            cMap.put("status", database.statusDao().getStatusType(c.status));
+            displayContacts.add(cMap);
         }
-        else {
-            return numberText2.getText() + " is bigger than " + numberText1.getText();
-        }
+        return displayContacts;
     }
 
     @Override
@@ -70,18 +86,7 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
             case R.id.checkButton:
-                if(numberText1.getText().length() != 0 && numberText2.getText().length() != 0) {
-                    int number1 = Integer.parseInt(numberText1.getText().toString());
-                    int number2 = Integer.parseInt(numberText2.getText().toString());
-                    if (number1 != 0 && number2 != 0) {
-                        numberOutputText.setText(sizeCheck(number1, number2));
-                    }
-                }
-                else
-                {
-                    numberOutputText.setText("Please enter some numbers");
-                }
-                break;
+
         }
     }
 }
