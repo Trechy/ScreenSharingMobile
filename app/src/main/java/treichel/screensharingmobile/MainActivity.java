@@ -7,13 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +67,35 @@ public class MainActivity extends AppCompatActivity
 
         contactListView.setAdapter(contactAdaptor);
 
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                LinearLayout contact = (LinearLayout)v;
+                TextView contactIdView = (TextView) contact.getChildAt(0);
+                int contactId = Integer.parseInt(contactIdView.getText().toString());
+
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+                Bundle contactUser = new Bundle();
+
+                TextView usernameTextView = (TextView)
+                        findViewById(android.R.id.text1);
+                TextView statusTextView = (TextView)
+                        findViewById(android.R.id.text2);
+
+                String username = usernameTextView.getText().toString();
+                String status = statusTextView.getText().toString();
+
+                contactUser.putInt("contactId", contactId);
+                contactUser.putString("username", username);
+                contactUser.putString("status", status);
+                intent.putExtras(contactUser);
+
+                startActivity(intent);
+            }
+        });
     }
 
     private List<Map<String, String>> MapContacts(SharedPreferences activeUser){
@@ -85,8 +118,6 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.checkButton:
-
         }
     }
 }
