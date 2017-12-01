@@ -75,21 +75,17 @@ public class MainActivity extends AppCompatActivity
             {
                 LinearLayout contact = (LinearLayout)v;
                 TextView contactIdView = (TextView) contact.getChildAt(0);
-                int contactId = Integer.parseInt(contactIdView.getText().toString());
+                String contactUsername = contactIdView.getText().toString();
 
                 Intent intent = new Intent(MainActivity.this, ContactActivity.class);
                 Bundle contactUser = new Bundle();
 
-                TextView usernameTextView = (TextView)
-                        findViewById(android.R.id.text1);
                 TextView statusTextView = (TextView)
                         findViewById(android.R.id.text2);
 
-                String username = usernameTextView.getText().toString();
                 String status = statusTextView.getText().toString();
 
-                contactUser.putInt("contactId", contactId);
-                contactUser.putString("username", username);
+                contactUser.putString("username", contactUsername);
                 contactUser.putString("status", status);
                 intent.putExtras(contactUser);
 

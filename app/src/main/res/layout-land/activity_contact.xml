@@ -13,18 +13,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="104dp"
-        android:layout_marginStart="104dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginStart="116dp"
         android:layout_marginTop="47dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="32dp" />
 
     <TextView
         android:id="@+id/contactStatusTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/contactUsernameTextView"
-        android:layout_alignRight="@+id/contactUsernameTextView"
-        android:layout_below="@+id/contactUsernameTextView"
-        android:layout_marginTop="20dp"
+        android:layout_alignBottom="@+id/avatarImageView"
+        android:layout_alignLeft="@+id/contactUsernameTextView"
+        android:layout_alignStart="@+id/contactUsernameTextView"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/contactUsernameTextView"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_toLeftOf="@+id/contactStatusTextView"
+        android:layout_toStartOf="@+id/contactStatusTextView"
+        app:srcCompat="@android:color/holo_red_light" />
 </RelativeLayout>
