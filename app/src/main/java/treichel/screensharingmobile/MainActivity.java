@@ -94,6 +94,13 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
     private List<Map<String, String>> MapContacts(SharedPreferences activeUser){
         List<Map<String, String>> displayContacts = new ArrayList<Map<String, String>>();
         List<User> userContacts = database.contactDao().getUserContacts(activeUser.getInt("UserID", 0));
