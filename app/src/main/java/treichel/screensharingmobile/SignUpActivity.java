@@ -50,7 +50,13 @@ public class SignUpActivity extends AppCompatActivity
         CharSequence text;
         int duration = Toast.LENGTH_SHORT;
         User userCheck = database.userDao().getUser(username);
-        if(!(password.equals(confirm))){
+        if(username.matches("") || password.matches("") || confirm.matches(""))
+        {
+            text = "One or more fields are blank";
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else if(!(password.equals(confirm))){
             text = "Passwords do not match";
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();

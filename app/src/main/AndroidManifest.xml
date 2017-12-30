@@ -21,5 +21,5 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ContactActivity"/>
     </application>
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
