@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import java.io.InputStream;
 
@@ -80,8 +82,16 @@ public class ContactActivity extends AppCompatActivity
                 avatarBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new DownloadImageTask(avatarImageView)
-                                .execute(imageURL.getText().toString());
+                        try {
+                            new DownloadImageTask(avatarImageView)
+                                    .execute(imageURL.getText().toString());
+                        }
+                        catch(Exception e)
+                        {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                            toast.show();
+                        }
                     }
                 });
                 avatarBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
