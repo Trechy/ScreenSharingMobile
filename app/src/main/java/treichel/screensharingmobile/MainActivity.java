@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity
         startActivity(getIntent());
     }
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         finish();
         Intent backgroundIntent = new Intent(this, SetStatusService.class);
         startService(backgroundIntent);
