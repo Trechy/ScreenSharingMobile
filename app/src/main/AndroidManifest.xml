@@ -20,6 +20,9 @@
         <activity android:name=".AddContactActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ContactActivity"/>
+        <service
+            android:name=".SetStatusService"
+            android:exported="true"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

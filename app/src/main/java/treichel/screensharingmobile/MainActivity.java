@@ -3,6 +3,7 @@ package treichel.screensharingmobile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -99,6 +100,14 @@ public class MainActivity extends AppCompatActivity
         super.onRestart();
         finish();
         startActivity(getIntent());
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
+        Intent backgroundIntent = new Intent(this, SetStatusService.class);
+        //backgroundIntent.setData(Uri.parse(dataUrl));
+        startService(backgroundIntent);
     }
 
     private List<Map<String, String>> MapContacts(SharedPreferences activeUser){
