@@ -4,8 +4,6 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.Gravity;
-import android.widget.Toast;
 
 import treichel.screensharingmobile.Database.AppDatabase;
 import treichel.screensharingmobile.Entities.User;

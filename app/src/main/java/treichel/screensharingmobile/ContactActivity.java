@@ -73,6 +73,8 @@ public class ContactActivity extends AppCompatActivity
                 startActivity(smsIntent);
                 break;
             case R.id.avatarImageView:
+                //Source
+                //https://stackoverflow.com/questions/10903754/input-text-dialog-android
                 AlertDialog.Builder avatarBuilder = new AlertDialog.Builder(this);
                 avatarBuilder.setTitle("Enter image URL");
                 final EditText imageURL = new EditText(this);
@@ -105,6 +107,9 @@ public class ContactActivity extends AppCompatActivity
         }
     }
 }
+
+//Source
+//https://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
 
 class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;

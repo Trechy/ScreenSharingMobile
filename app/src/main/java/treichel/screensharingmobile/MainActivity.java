@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private AppDatabase database;
 
     private Button addContactPageButton;
+    private Button setStatusOnlineButton;
     private ListView contactListView;
 
     @Override
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity
         addContactPageButton = (Button)
                 findViewById(R.id.addContactPageButton);
         addContactPageButton.setOnClickListener(this);
+        setStatusOnlineButton = (Button)
+                findViewById(R.id.setStatusOnlineButton);
+        setStatusOnlineButton.setOnClickListener(this);
 
         contactListView = (ListView)
                 findViewById(R.id.contactListView);
@@ -106,7 +110,6 @@ public class MainActivity extends AppCompatActivity
         super.onPause();
         finish();
         Intent backgroundIntent = new Intent(this, SetStatusService.class);
-        //backgroundIntent.setData(Uri.parse(dataUrl));
         startService(backgroundIntent);
     }
 
@@ -129,6 +132,28 @@ public class MainActivity extends AppCompatActivity
             case R.id.addContactPageButton:
                 Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.setStatusOnlineButton:
+                Context context = getApplicationContext();
+                String text;
+                int duration = Toast.LENGTH_SHORT;
+                SharedPreferences activeUser = getApplication()
+                        .getSharedPreferences("ACTIVE_USER", Context.MODE_PRIVATE);
+                User currentUser = database.userDao().getUser(activeUser.getString("Username", null));
+                if(currentUser.status == 1){
+                    text = "User is already online";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.show();
+                }
+                else{
+                    currentUser.status = 1;
+                    database.userDao().updateUser(currentUser);
+                    text = "User is now online";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.show();
+                }
                 break;
         }
     }

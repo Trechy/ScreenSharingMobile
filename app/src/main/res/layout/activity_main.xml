@@ -10,20 +10,33 @@
         android:id="@+id/addContactPageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:paddingHorizontal="16dp"
+        android:layout_marginTop="28dp"
         android:layout_weight=".80"
+        android:paddingHorizontal="16dp"
         android:text="Add Contact" />
+
+    <Button
+        android:id="@+id/setStatusOnlineButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addContactPageButton"
+        android:layout_marginTop="14dp"
+        android:layout_weight=".80"
+        android:paddingHorizontal="16dp"
+        android:text="Set Status Online" />
 
     <ListView
         android:id="@+id/contactListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addContactPageButton"
+        android:layout_below="@+id/setStatusOnlineButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:paddingHorizontal="16dp"/>
+        android:paddingHorizontal="16dp" />
 
 </RelativeLayout>
